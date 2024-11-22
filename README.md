@@ -1213,5 +1213,4 @@ As Ethereum continues to evolve with updates like **Ethereum 2.0**, new features
 - **Proof of Stake (PoS)**: Ethereum is transitioning from Proof of Work (PoW) to PoS for scalability and environmental reasons.
 - **Sharding**: Breaking the Ethereum blockchain into smaller pieces (shards) for better scalability.
 - **Cross-chain interoperability**: Making it easier for Ethereum to interact with other blockchains.
-
 ---
