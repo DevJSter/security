@@ -47,3 +47,14 @@ contract PasswordStore {
         return keccak256(abi.encodePacked(password)) == s_passwordHash;
     }
 }
+
+/*
+The password is stored as a hash using keccak256.
+
+Added an onlyOwner modifier to restrict access to sensitive functions.
+
+Instead of exposing the password, a verifyPassword function is added to check if the input matches the stored hash.
+Gas Optimization:
+
+Used immutable for i_owner since it doesn’t change after initialization.
+*/
