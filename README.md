@@ -253,7 +253,7 @@ contract Loop {
     }
 }
 
-*/ Mappings 
+/* Mappings 
 Maps are created with the syntax mapping(keyType => valueType).
 
 The keyType can be any built-in value type, bytes, string, or any contract.
@@ -1602,6 +1602,7 @@ a function that does not exist is called or
 Ether is sent directly to a contract but receive() does not exist or msg.data is not empty
 To better understand the conditions under which Solidity calls the receive or fallback function, refer to the flowchart below:*/
 
+/*
 
                  send Ether
                       |
@@ -1614,6 +1615,8 @@ To better understand the conditions under which Solidity calls the receive or fa
      yes          no
       |            |
   receive()     fallback()
+
+*/
 
 // fallback has a 2300 gas limit when called by transfer or send.
 
@@ -1651,7 +1654,8 @@ contract SendToFallback {
         require(sent, "Failed to send Ether");
     }
 }
-fallback can optionally take bytes for input and output
+
+// fallback can optionally take bytes for input and output
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -1698,6 +1702,7 @@ contract TestFallbackInputOutput {
             (abi.encodeCall(Counter.get, ()), abi.encodeCall(Counter.inc, ()));
     }
 }
+/*
 Call
 For the most up to date version of this content, please see Call (Code Example) on Cyfrin.io
 call is a low level function to interact with other contracts.
@@ -1710,6 +1715,7 @@ Few reasons why low-level call is not recommended
 Reverts are not bubbled up
 Type checks are bypassed
 Function existence checks are omitted
+*/
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
@@ -1755,7 +1761,7 @@ contract Caller {
         emit Response(success, data);
     }
 }
-
+/*
 Delegatecall
 For the most up to date version of this content, please see Delegatecall (Code Example) on Cyfrin.io
 delegatecall is a low level function similar to call.
@@ -1763,7 +1769,7 @@ delegatecall is a low level function similar to call.
 When contract A executes delegatecall to contract B, B's code is executed
 
 with contract A's storage, msg.sender and msg.value.
-
+*/
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
@@ -1813,6 +1819,7 @@ contract A {
     }
 }
 
+/*
 Function Selector
 For the most up to date version of this content, please see Function Selector (Code Example) on Cyfrin.io
 When a function is called, the first 4 bytes of calldata specifies which function to call.
@@ -1828,6 +1835,7 @@ The first 4 bytes returned from abi.encodeWithSignature(....) is the function se
 Perhaps you can save a tiny amount of gas if you precompute and inline the function selector in your code?
 
 Here is how the function selector is computed.
+*/
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -1848,15 +1856,15 @@ contract FunctionSelector {
     }
 }
 
-Calling Other Contract
-For the most up to date version of this content, please see Calling Other Contract (Code Example) on Cyfrin.io
-Contract can call other contracts in 2 ways.
+// Calling Other Contract
+// For the most up to date version of this content, please see Calling Other Contract (Code Example) on Cyfrin.io
+// Contract can call other contracts in 2 ways.
 
-The easiest way to is to just call it, like A.foo(x, y, z).
+// The easiest way to is to just call it, like A.foo(x, y, z).
 
-Another way to call other contracts is to use the low-level call.
+// Another way to call other contracts is to use the low-level call.
 
-This method is not recommended.
+// This method is not recommended.
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -1898,9 +1906,9 @@ contract Caller {
     }
 }
 
-Contract that Creates other Contracts
-For the most up to date version of this content, please see Contract that Creates other Contracts (Code Example) on Cyfrin.io
-Contracts can be created by other contracts using the new keyword. Since 0.8.0, new keyword supports create2 feature by specifying salt options.
+// Contract that Creates other Contracts
+// For the most up to date version of this content, please see Contract that Creates other Contracts (Code Example) on Cyfrin.io
+// Contracts can be created by other contracts using the new keyword. Since 0.8.0, new keyword supports create2 feature by specifying salt options.
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -1965,9 +1973,9 @@ contract CarFactory {
     }
 }
 
-Try Catch
-For the most up to date version of this content, please see Try Catch (Code Example) on Cyfrin.io
-try / catch can only catch errors from external function calls and contract creation.
+// Try Catch
+// For the most up to date version of this content, please see Try Catch (Code Example) on Cyfrin.io
+// try / catch can only catch errors from external function calls and contract creation.
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2028,17 +2036,17 @@ contract Bar {
     }
 }
 
-Import
-For the most up to date version of this content, please see Import (Code Example) on Cyfrin.io
-You can import local and external files in Solidity.
+// Import
+// For the most up to date version of this content, please see Import (Code Example) on Cyfrin.io
+// You can import local and external files in Solidity.
 
-Local
-Here is our folder structure.
+// Local
+// Here is our folder structure.
 
-├── Import.sol
-└── Foo.sol
+// ├── Import.sol
+// └── Foo.sol
 
-Foo.sol
+// Foo.sol
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2058,7 +2066,7 @@ contract Foo {
     string public name = "Foo";
 }
 
-Import.sol
+// Import.sol
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2079,8 +2087,8 @@ contract Import {
     }
 }
 
-External
-You can also import from GitHub by simply copying the url
+// External
+// You can also import from GitHub by simply copying the url
 
 // https://github.com/owner/repo/blob/branch/path/to/Contract.sol
 import "https://github.com/owner/repo/blob/branch/path/to/Contract.sol";
@@ -2091,13 +2099,13 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.5
 
 
 
-Library
-For the most up to date version of this content, please see Library (Code Example) on Cyfrin.io
-Libraries are similar to contracts, but you can't declare any state variable and you can't send ether.
+// Library
+// For the most up to date version of this content, please see Library (Code Example) on Cyfrin.io
+// Libraries are similar to contracts, but you can't declare any state variable and you can't send ether.
 
-A library is embedded into the contract if all library functions are internal.
+// A library is embedded into the contract if all library functions are internal.
 
-Otherwise the library must be deployed and then linked before the contract is deployed.
+// Otherwise the library must be deployed and then linked before the contract is deployed.
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2153,8 +2161,8 @@ contract TestArray {
     }
 }
 
-ABI Encode
-For the most up to date version of this content, please see ABI Encode (Code Example) on Cyfrin.io
+// ABI Encode
+// For the most up to date version of this content, please see ABI Encode (Code Example) on Cyfrin.io
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
@@ -2200,11 +2208,11 @@ contract AbiEncode {
     }
 }
 
-ABI Decode
-For the most up to date version of this content, please see ABI Decode (Code Example) on Cyfrin.io
-abi.encode encodes data into bytes.
+// ABI Decode
+// For the most up to date version of this content, please see ABI Decode (Code Example) on Cyfrin.io
+// abi.encode encodes data into bytes.
 
-abi.decode decodes bytes back into data.
+// abi.decode decodes bytes back into data.
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2240,15 +2248,15 @@ contract AbiDecode {
     }
 }
 
-Hashing with Keccak256
-For the most up to date version of this content, please see Hashing with Keccak256 (Code Example) on Cyfrin.io
-keccak256 computes the Keccak-256 hash of the input.
+// Hashing with Keccak256
+// For the most up to date version of this content, please see Hashing with Keccak256 (Code Example) on Cyfrin.io
+// keccak256 computes the Keccak-256 hash of the input.
 
-Some use cases are:
+// Some use cases are:
 
-Creating a deterministic unique ID from an input
-Commit-Reveal scheme
-Compact cryptographic signature (by signing the hash instead of a larger input)
+// Creating a deterministic unique ID from an input
+// Commit-Reveal scheme
+// Compact cryptographic signature (by signing the hash instead of a larger input)
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
@@ -2285,11 +2293,11 @@ contract GuessTheMagicWord {
     }
 }
 
-Verifying Signature
-For the most up to date version of this content, please see Verifying Signature (Code Example) on Cyfrin.io
-Messages can be signed off chain and then verified on chain using a smart contract.
+// Verifying Signature
+// For the most up to date version of this content, please see Verifying Signature (Code Example) on Cyfrin.io
+// Messages can be signed off chain and then verified on chain using a smart contract.
 
-Example using ethers.js
+// Example using ethers.js
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2418,15 +2426,17 @@ contract VerifySignature {
     }
 }
 
-Gas Saving Techniques
-For the most up to date version of this content, please see Gas Saving Techniques (Code Example) on Cyfrin.io
-Some gas saving techniques.
+// Gas Saving Techniques
+// For the most up to date version of this content, please see Gas Saving Techniques (Code Example) on Cyfrin.io
+// Some gas saving techniques.
 
-Replacing memory with calldata
-Loading state variable to memory
-Replace for loop i++ with ++i
-Caching array elements
-Short circuit
+// Replacing memory with calldata
+// Loading state variable to memory
+// Replace for loop i++ with ++i
+// Caching array elements
+// Short circuit
+
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
@@ -2474,8 +2484,8 @@ contract GasGolf {
     }
 }
 
-Bitwise Operators
-For the most up to date version of this content, please see Bitwise Operators (Code Example) on Cyfrin.io
+// Bitwise Operators
+// For the most up to date version of this content, please see Bitwise Operators (Code Example) on Cyfrin.io
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
@@ -2584,7 +2594,7 @@ contract BitwiseOps {
     }
 }
 
-Most significant bit
+// Most significant bit
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
@@ -2635,7 +2645,8 @@ contract MostSignificantBitFunction {
     }
 }
 
-Most significant bit in assembly
+// Most significant bit in assembly
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
@@ -2688,11 +2699,11 @@ contract MostSignificantBitAssembly {
     }
 }
 
-Unchecked Math
-For the most up to date version of this content, please see Unchecked Math (Code Example) on Cyfrin.io
-Overflow and underflow of numbers in Solidity 0.8 throw an error. This can be disabled by using unchecked.
+// Unchecked Math
+// For the most up to date version of this content, please see Unchecked Math (Code Example) on Cyfrin.io
+// Overflow and underflow of numbers in Solidity 0.8 throw an error. This can be disabled by using unchecked.
 
-Disabling overflow / underflow check saves gas.
+// Disabling overflow / underflow check saves gas.
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2729,9 +2740,9 @@ contract UncheckedMath {
     }
 }
 
-Assembly Variable
-For the most up to date version of this content, please see Assembly Variable (Code Example) on Cyfrin.io
-Example of how to declare variables inside assembly
+// Assembly Variable
+// For the most up to date version of this content, please see Assembly Variable (Code Example) on Cyfrin.io
+// Example of how to declare variables inside assembly
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2746,9 +2757,11 @@ contract AssemblyVariable {
         }
     }
 }
-Assembly Conditional Statements
-For the most up to date version of this content, please see Assembly Conditional Statements (Code Example) on Cyfrin.io
-Example of conditional statements in assembly
+
+
+// Assembly Conditional Statements
+// For the most up to date version of this content, please see Assembly Conditional Statements (Code Example) on Cyfrin.io
+// Example of conditional statements in assembly
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2774,9 +2787,9 @@ contract AssemblyIf {
     }
 }
 
-Assembly Loop
-For the most up to date version of this content, please see Assembly Loop (Code Example) on Cyfrin.io
-Example of loop in assembly
+// Assembly Loop
+// For the most up to date version of this content, please see Assembly Loop (Code Example) on Cyfrin.io
+// Example of loop in assembly
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2799,9 +2812,9 @@ contract AssemblyLoop {
     }
 }
 
-Assembly Error
-For the most up to date version of this content, please see Assembly Error (Code Example) on Cyfrin.io
-Example of error in assembly
+// Assembly Error
+// For the most up to date version of this content, please see Assembly Error (Code Example) on Cyfrin.io
+// Example of error in assembly
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -2817,9 +2830,9 @@ contract AssemblyError {
     }
 }
 
-Assembly Math
-For the most up to date version of this content, please see Assembly Math (Code Example) on Cyfrin.io
-Example of math in assembly
+// Assembly Math
+// For the most up to date version of this content, please see Assembly Math (Code Example) on Cyfrin.io
+// Example of math in assembly
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
